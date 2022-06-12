@@ -1,0 +1,71 @@
+<form [formGroup]="form" class="normal-form">
+
+  <mat-toolbar cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    <span>Création d'une équipe</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" (click)="onClose()" mat-stroked-button tabIndex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar>
+  <br>
+
+
+
+
+  <mat-grid-list cols="2" rowHeight="2:1">
+
+    <mat-grid-tile class="matg1" [colspan]="2" [rowspan]="2">
+      <div class="modal" style="font-size: 14px">
+
+
+        <mat-form-field class="classPrenom">
+          <mat-label>Nom d'équipe</mat-label>
+          <input matInput formControlName="nomEquipe">
+          <mat-error> Nom d'équipe est invalide</mat-error>
+          <mat-icon class="maticon" matSuffix>subtitles</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="classPrenom" floatLabel="always">
+          <mat-label>Projet</mat-label>
+          <input type="text" matInput [formControl]="autoCompleteControl" [matAutocomplete]="auto">
+          <mat-icon matSuffix>supervised_user_circle</mat-icon>
+
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn()">
+            <mat-option *ngFor="let option of autoCompleteResult | async" [value]="option">
+              {{option.titre}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+
+        <mat-form-field class="classPrenom">
+          <mat-label>Membre de l'équipe</mat-label>
+          <mat-select [formControl]="membreEquipeControl" multiple>
+            <mat-select-trigger>
+              {{membreEquipeControl.value ? membreEquipeControl.value[0]?.nom : ''}}
+              <span *ngIf="membreEquipeControl.value?.length > 1" class="example-additional-selection">
+                (+{{membreEquipeControl.value.length - 1}} {{membreEquipeControl.value?.length === 2 ? 'autre' : 'autres'}})
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let membreEquipe of tab_User" [value]="membreEquipe">{{membreEquipe.nom}} {{membreEquipe.prenom}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+
+        <button button mat-raised-button (click)="AjouterEquipe()">
+          <mat-icon>add</mat-icon> Ajouter
+        </button>
+
+
+      </div>
+
+
+
+
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+
+</form>

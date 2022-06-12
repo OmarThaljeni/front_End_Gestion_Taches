@@ -1,0 +1,82 @@
+<form [formGroup]="form" class="normal-form">
+
+  <mat-toolbar cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    <span>Création d'un projet</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" (click)="onClose()" mat-stroked-button tabIndex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar>
+  <br>
+
+
+
+
+  <mat-grid-list cols="2" rowHeight="2:1">
+
+    <mat-grid-tile class="matg1" [colspan]="2" [rowspan]="2">
+      <div class="modal" style="font-size: 14px">
+
+
+        <mat-form-field class="classPrenom" floatLabel="always">
+          <mat-label>Chef du projet</mat-label>
+          <input type="text" matInput [formControl]="autoCompleteControl" [matAutocomplete]="auto">
+          <mat-icon matSuffix>supervised_user_circle</mat-icon>
+
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn()">
+            <mat-option *ngFor="let option of autoCompleteResult | async" [value]="option">
+              {{option.nom}} {{option.prenom}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+
+        <mat-form-field class="classPrenom">
+          <mat-label>Titre</mat-label>
+          <input matInput formControlName="titre">
+          <mat-error> Titre est invalide</mat-error>
+          <mat-icon class="maticon" matSuffix>subtitles</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="classPrenom">
+          <mat-label>Date début*</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateDebut">
+          <mat-datepicker-toggle matSuffix [for]="picker" class="maticon"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+
+
+        <mat-form-field class="classPrenom">
+          <mat-label>Date fin*</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="dateFin">
+          <mat-datepicker-toggle matSuffix [for]="picker1" class="maticon"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+
+        <mat-form-field class="className">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+          <mat-error> Description est invalide</mat-error>
+          <mat-icon class="maticon" matSuffix>description</mat-icon>
+        </mat-form-field>
+
+
+
+        <button class="btnAjouter" (click)="AjouterProjet()">
+          <mat-icon>add</mat-icon> Ajouter
+        </button>
+
+
+      </div>
+
+
+
+
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+
+</form>

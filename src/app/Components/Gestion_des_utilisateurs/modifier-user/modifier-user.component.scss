@@ -1,0 +1,189 @@
+/* notification */
+snack-bar-container.success {
+    background-color: #5cb85c;
+    color : #fff;
+  }
+  
+  snack-bar-container.warn {
+    background-color: #f99157;
+    color : #fff;
+  }
+  
+  
+  snack-bar-container.notification simple-snack-bar{
+    font-size: 18px !important;
+    font-weight: bold;
+  }
+  
+  
+  .hide{
+    display: none;
+  }
+  
+  /* mat-table */
+  mat-footer-row mat-footer-cell{
+    justify-content: center;
+    font-style: italic;
+  }
+  
+  button mat-button{
+  color: black;
+  }
+  
+  .mat-toolbar 
+  {
+  padding-left: 30px;
+  
+  }
+  
+  /* filter controls */
+  .search-div{
+    margin: 10px;
+      }
+      .search-form-field{
+          width: 60%;
+          margin-left: 10px;
+          padding: 5px 10px;
+          background-color: #f5f5f5;
+          border-radius: 5px;
+          }
+          .search-form-field div.mat-form-field-underline {
+              display: none;
+          }
+          .search-form-field div.mat-form-field-infix{
+              border-top: 0px;
+          }
+          .search-form-field div.mat-form-field-wrapper{
+            padding-bottom: 0px;
+        }
+        .search-form-field div.mat-form-field-suffix button{
+            height: 32px;
+            width: 32px;
+        }
+  
+        /* for dialog pop-up */
+  .btn-dialog-close{
+    width: 45px;
+    min-width: 0px !important;
+    height: 40px;
+    padding: 0px !important;
+  }
+  
+   /* mat-confirm-dialog (customised dialog) */
+   .confirm-dialog-container .mat-dialog-container {
+    border-radius: .25em .25em .4em .4em;
+    padding: 0px;
+  }
+  .confirm-dialog-container .content-container{
+    margin: 5px 5px 15px 5px;
+    color: #8f9cb5;
+    display: flex;
+  }
+  .confirm-dialog-container #close-icon{
+    margin-left: auto;
+    order: 2;
+    font-weight: bolder;
+  }
+  .confirm-dialog-container #close-icon:hover{
+  cursor: pointer;
+  }
+  
+  .confirm-dialog-container #no-button{
+  height: 50px;
+  width: 50%;
+  background-color: #fc7169;
+  color:white;
+  border-radius: 0px;
+  }
+  
+  .confirm-dialog-container #yes-button{
+    height: 50px;
+    width: 50%;
+    background-color: #b6bece;
+    color:white;
+    border-radius: 0px;
+  }
+  
+  .confirm-dialog-container span.content-span{
+    padding:  35px 16px;
+    text-align: center;
+    font-size: 10px;
+  }
+  
+  
+  .example-radio-button{margin-left: 7px;}
+  mat-grid-tile {
+  background:white;
+  }
+  .width-50{width: 29%;}
+  .ml-1{margin-left: 1%;}
+  .ml-2{margin-left: 2%;}
+  .width-70{width: 80%;}
+  .width-25{width: 25%;}
+  
+  .mat-toolbar 
+  {
+  background: #4822ce;
+  color: #fff9f8;
+  }
+  
+  
+  .fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+  
+  
+  
+  
+  .modal{
+  width: 100%;
+  padding: 5%;    
+  margin-bottom: 20px;
+  }
+  
+  
+  .className
+  {
+    width: 280px;
+  }
+  
+  .classEmail
+  {
+    width: 280px;
+  }
+  
+  .classeTel
+  {
+    width:280px
+  }
+  
+  .classPrenom
+  {
+    width: 280px;
+    margin-left: 40px;
+  }
+  
+  .classeRole
+  {
+    width: 600px;
+  
+  }
+  
+  
+  .maticon
+  {
+    color: #4822ce;
+  }
+  
+  .mat-raised-button
+  {
+    width: 180px;
+    background-color: #4822ce;
+    color: white;
+    margin-top: 50px;
+    height: 45px;
+    margin-left: 220px;
+  
+  }

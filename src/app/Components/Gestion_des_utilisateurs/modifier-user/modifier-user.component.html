@@ -1,0 +1,90 @@
+<form [formGroup]="form" class="normal-form">  
+
+  <mat-toolbar cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    <span>Modification d'un utilisateur</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close"(click)="onClose()" mat-stroked-button  tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar>
+  <br>
+
+
+
+  <mat-grid-list cols="2" rowHeight="2:1">
+
+    <mat-grid-tile class="matg1"[colspan]="2" [rowspan]="2" >
+      <div class="modal" style="font-size: 14px">
+      <mat-form-field class="className">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="nom">
+        <mat-error> Nom est invalide</mat-error>
+        <mat-icon class="maticon"  matSuffix>supervised_user_circle</mat-icon>
+      </mat-form-field>
+  
+      <mat-form-field class="classPrenom">
+        <mat-label>Prénom</mat-label>
+        <input matInput formControlName="prenom">
+        <mat-error> Prénom est invalide</mat-error>
+        <mat-icon class="maticon"  matSuffix>supervised_user_circle</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="classEmail">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+        <mat-error> Email est invalide</mat-error>
+        <mat-icon class="maticon"  matSuffix>alternate_email</mat-icon>
+      </mat-form-field>
+
+
+      <mat-form-field class="classPrenom">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" formControlName="password">
+        <mat-error> Mot de passe est invalide</mat-error>
+        <mat-icon class="maticon"  matSuffix>lock</mat-icon>
+      </mat-form-field>
+
+
+      <mat-form-field class="classeTel">
+        <mat-label>Adresse</mat-label>
+        <input matInput formControlName="adress">
+        <mat-error> Adresse est invalide</mat-error>
+        <mat-icon class="maticon"  matSuffix>home</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="classPrenom">
+        <mat-label>N° Télépone</mat-label>
+        <input matInput type="number" formControlName="numTel">
+        <mat-error> Format invalide</mat-error>
+        <mat-icon class="maticon"  matSuffix>phone_android</mat-icon>
+      </mat-form-field>
+
+      
+      <mat-form-field class="classeRole">
+        <mat-label>Role</mat-label>
+        <select matNativeControl required formControlName="roles">
+          <option value="Administrateur">Administrateur</option>
+          <option value="Membre d'une equipe">Membre d'une equipe</option>
+          <option value="Chef du projet">Chef du projet</option>
+        </select>
+        <mat-error> Format invalide</mat-error>
+
+      </mat-form-field>
+
+
+      <button mat-raised-button (click)="modifierUser()">
+        <mat-icon>save</mat-icon> Modifier
+      </button>
+      
+      
+      </div>
+
+  
+
+
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+
+
+
+</form>

@@ -1,0 +1,65 @@
+<form class="normal-form">
+  <mat-toolbar cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    <span>Création d'un compétence</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" (click)="onClose()" mat-stroked-button tabIndex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar>
+  <br>
+
+
+
+
+  <mat-grid-list cols="2" rowHeight="2:2">
+
+
+
+    <mat-grid-tile class="matg1" [colspan]="2" [rowspan]="1">
+
+
+
+
+      <div class="modal" style="font-size: 16px">
+        <mat-form-field class="className" floatLabel="always">
+          <mat-label>Nom et prenom</mat-label>
+          <input type="text" matInput [formControl]="autoCompleteControl" [matAutocomplete]="auto">
+          <mat-icon matSuffix>supervised_user_circle</mat-icon>
+
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn()">
+            <mat-option *ngFor="let option of autoCompleteResult | async" [value]="option">
+              {{option.nom}} {{option.prenom}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        
+        
+        <mat-form-field class="className">
+          <mat-label>Compétences</mat-label>
+          <mat-select [formControl]="competenceForm" multiple>
+            <mat-select-trigger>
+              {{competenceForm.value ? competenceForm.value[0]?.titre : ''}}
+              <span *ngIf="competenceForm.value?.length > 1" class="example-additional-selection">
+                (+{{competenceForm.value.length - 1}} {{competenceForm.value?.length === 2 ? 'autre' : 'autres'}})
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let competence of competenceList" [value]="competence">{{competence.titre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button (click)="ajouterCompetence()">
+          <mat-icon>add</mat-icon> Ajouter
+        </button>
+
+
+      </div>
+
+
+
+
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+
+</form>

@@ -1,0 +1,61 @@
+<h1> Gestion des competences d'un employé</h1>
+<!-- 
+<button class="btnConsuler" mat-raised-button (click)="remplirListeCompetence()">
+  <mat-icon>panorama_fish_eye</mat-icon>Consulter ses compétences
+</button> -->
+
+<br>
+<br>
+<br>
+
+<mat-form-field class="class1" floatLabel="always">
+  <mat-label>Nom et prenom</mat-label>
+  <input type="text" matInput [formControl]="autoCompleteControl" [matAutocomplete]="auto" (ngModelChange)="remplirListeCompetence()">
+  <mat-icon matSuffix>supervised_user_circle</mat-icon>
+
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn()">
+    <mat-option *ngFor="let option of autoCompleteResult | async" [value]="option">
+      {{option.nom}} {{option.prenom}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<br>
+<br>
+
+<div class="search-div">
+  <button mat-raised-button (click)="AjoutCompetenceUser()">
+    <mat-icon>add</mat-icon>Ajouter compétence
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre"> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="titre">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre"> Titre </th>
+    <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
+  </ng-container>
+
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
