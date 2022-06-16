@@ -4,17 +4,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Observable } from 'rxjs';
 import { Utilisateur } from 'src/app/Models/Utilisateur';
 import { DialogService } from 'src/app/Services/dialog.service';
-import { NotificationService } from 'src/app/Services/notification.service';
-import { GestionProjetService } from 'src/app/Services/projet.service';
-import { map, startWith } from 'rxjs/operators';
 import { GestionUsersService } from 'src/app/Services/gestion_users.service';
+import { NotificationService } from 'src/app/Services/notification.service';
+import { map, startWith } from 'rxjs/operators';
+import { GestionTacheService } from 'src/app/Services/gestion-tache.service';
 
 @Component({
-  selector: 'app-ajouter-projets',
-  templateUrl: './ajouter-projets.component.html',
-  styleUrls: ['./ajouter-projets.component.scss']
+  selector: 'app-ajout-tache',
+  templateUrl: './ajout-tache.component.html',
+  styleUrls: ['./ajout-tache.component.scss']
 })
-export class AjouterProjetsComponent implements OnInit {
+export class AjoutTacheComponent implements OnInit {
 
   submitted = false;
   autoCompleteResult: Observable<Utilisateur[]>;
@@ -24,9 +24,9 @@ export class AjouterProjetsComponent implements OnInit {
   selectedUser: any;
 
 
-  constructor(private userService:GestionUsersService,private gestionProjetService: GestionProjetService, private notificationService: NotificationService,
+  constructor(private userService:GestionUsersService,private gestionTacheService: GestionTacheService, private notificationService: NotificationService,
     private dialogService: DialogService, @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<AjouterProjetsComponent>) {
+    public dialogRef: MatDialogRef<AjoutTacheComponent>) {
       this.autoCompleteResult = this.autoCompleteControl.valueChanges
       .pipe(
         startWith(''),
@@ -55,7 +55,7 @@ export class AjouterProjetsComponent implements OnInit {
     }
 
     listerChefsProjets() {
-      let resp = this.userService.ListerTousChefProjet();
+      let resp = this.userService.ListerMembreEquipe();
       resp.subscribe(
         response => {
           this.tab_User = response;
@@ -72,6 +72,7 @@ export class AjouterProjetsComponent implements OnInit {
   ngOnInit() {
     this.onCloseOnlickEchap();
     this.listerChefsProjets();
+    
 
   }
 
@@ -106,6 +107,7 @@ export class AjouterProjetsComponent implements OnInit {
     titre: new FormControl('', [Validators.required, Validators.maxLength(200)]),
     dateDebut: new FormControl('', [Validators.required, Validators.maxLength(20)]),
     dateFin: new FormControl('', [Validators.required, Validators.maxLength(20)]),  
+    priorite : new FormControl(''),  
   });
 
 
@@ -116,26 +118,31 @@ export class AjouterProjetsComponent implements OnInit {
       description: '',
       titre: '',
       dateFin:'',
-      dateDebut:''
+      dateDebut:'',
+      priorite:''
     });
   }
 
-  AjouterProjet() {
-     if (this.form.valid) {
-      const projet = {
-        description: this.form.get('description').value,
-        titre: this.form.get('titre').value,
-        dateFin: this.form.get('dateFin').value,
-        dateDebut: this.form.get('dateDebut').value,
-        user:this.selectedUser
-      };      
+  addTask()
+  {
+    const id = this.data.id;
+    const task = {
+      description: this.form.get('description').value,
+      titre: this.form.get('titre').value,
+      dateFin: this.form.get('dateFin').value,
+      dateDebut: this.form.get('dateDebut').value,
+      priorite:this.form.get('priorite').value,
+      user:this.selectedUser
+  }
+  let resp = this.gestionTacheService.AjouterTache(id,task);
+  resp.subscribe(res => {
+    this.submitted = true
+    this.DisplayAndClose();
 
-      this.gestionProjetService.AjouteProjet(projet).subscribe(res => {
-        this.submitted = true
-        this.DisplayAndClose();
-      })
-    } 
+  })
+
 
   }
+
 }
 

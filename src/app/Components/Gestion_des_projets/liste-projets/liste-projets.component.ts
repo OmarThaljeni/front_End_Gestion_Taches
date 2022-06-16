@@ -16,7 +16,7 @@ import { ModifierProjetsComponent } from '../modifier-projets/modifier-projets.c
 export class ListeProjetsComponent implements OnInit {
 
   ELEMENT_DATA: Projet[];
-  displayedColumns: string[] = ['titre', 'dateDebut', 'dateFin', 'description', 'user', 'actions'];
+  displayedColumns: string[] = ['titre', 'dateDebut', 'dateFin', 'description','etatProjet','etatEquipe' ,'user', 'actions'];
   dataSource = new MatTableDataSource<Projet>();
 
 
@@ -84,12 +84,9 @@ export class ListeProjetsComponent implements OnInit {
   listerListeProjets() {
     let resp = this.gestionProjetService.ListerTousProjets();
     resp.subscribe(
-      response => {
-        console.log("===>",response);
-        
+      response => {        
         this.dataSource.data = response as Projet[];
         this.changeDetectorRefs.detectChanges();   
-
       },
       error => {
         console.log(error);

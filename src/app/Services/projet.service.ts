@@ -10,8 +10,12 @@ const api_modifier_projet = 'http://localhost:8081/GestionProjet/ModifierProjet'
 
 const api_supprimer_projet = 'http://localhost:8081/GestionProjet/SupprimerProjet'
 
+const api_list_projet_EnAttente = 'http://localhost:8081/GestionProjet/RecuperListeProjetEnAttente'
+
+const api_list_projetuser = 'http://localhost:8081/GestionProjet/RecuperListeProjetUser'
 
 
+const api_list_projetuserModule = 'http://localhost:8081/GestionProjet/RecuperListeProjetUserEtatModule'
 
 
 @Injectable({
@@ -25,6 +29,20 @@ export class GestionProjetService {
     ListerTousProjets() {
         return this.http.get(api_list_projet);
     }
+
+    ListeProjetEnAttente() {
+        return this.http.get(api_list_projet_EnAttente); 
+    }
+
+    ListeProjetEnAttenteModule(id) {
+        return this.http.get(`${api_list_projetuserModule}/${id}`);
+
+    }
+
+    ListeProjetUser(id) {
+        return this.http.get(`${api_list_projetuser}/${id}`);
+    }
+
 
     SupprimerProjet(id): Observable<any> {
         return this.http.delete(`${api_supprimer_projet}/${id}`);

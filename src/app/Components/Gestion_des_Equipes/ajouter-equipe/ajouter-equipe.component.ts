@@ -68,10 +68,11 @@ export class AjouterEquipeComponent implements OnInit {
   }
 
   listerListeProject() {
-    let resp = this.projetService.ListerTousProjets();
+    const id = localStorage.getItem('id');    
+    let resp = this.projetService.ListeProjetUser(id);
     resp.subscribe(
-      response => {
-        this.tab_project = response;
+      response => {        
+        this.tab_project = response;        
         this.selectedProjet = response[0];
       },
       error => {

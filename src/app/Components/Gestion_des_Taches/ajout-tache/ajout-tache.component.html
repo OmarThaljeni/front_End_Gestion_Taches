@@ -1,7 +1,7 @@
 <form [formGroup]="form" class="normal-form">
 
   <mat-toolbar cdkDrag cdkDragRootElement=".cdk-overlay-pane">
-    <span>Création d'un module</span>
+    <span>Création d'un tache</span>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" (click)="onClose()" mat-stroked-button tabIndex="-1">
       <mat-icon>clear</mat-icon>
@@ -12,20 +12,20 @@
 
 
 
-  <mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-list cols="2" rowHeight="2:1.1">
 
     <mat-grid-tile class="matg1" [colspan]="2" [rowspan]="2">
       <div class="modal" style="font-size: 14px">
 
 
         <mat-form-field class="classPrenom" floatLabel="always">
-          <mat-label>Projet ?</mat-label>
+          <mat-label>Membre d'équipe</mat-label>
           <input type="text" matInput [formControl]="autoCompleteControl" [matAutocomplete]="auto">
-          <mat-icon matSuffix>work</mat-icon>
+          <mat-icon matSuffix>supervised_user_circle</mat-icon>
 
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn()">
             <mat-option *ngFor="let option of autoCompleteResult | async" [value]="option">
-              {{option.titre}} 
+              {{option.nom}} {{option.prenom}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
@@ -63,11 +63,20 @@
         </mat-form-field>
 
 
+        <mat-form-field class="className">
+          <mat-label>Priorite</mat-label>
+          <input matInput type="number" formControlName="priorite" >
+          <mat-error> Description est invalide</mat-error>
+          <mat-icon class="maticon" matSuffix>description</mat-icon>
+        </mat-form-field>
 
-        <button class="btnAjouter" (click)="AjouterModule()">
+
+        <button class="btnAjouter" (click)="addTask()">
           <mat-icon>add</mat-icon> Ajouter
         </button>
 
+
+    
 
       </div>
 

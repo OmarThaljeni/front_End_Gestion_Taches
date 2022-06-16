@@ -33,6 +33,10 @@ import { ModifierEquipeComponent } from './Components/Gestion_des_Equipes/modifi
 import { ProjetsChefComponent } from './Components/Gestion_des_projets/projets-chef/projets-chef.component';
 import { ListeModuleComponent } from './Components/Gestion_des_modules/liste-module/liste-module.component';
 import { AjouterModuleComponent } from './Components/Gestion_des_modules/ajouter-module/ajouter-module.component';
+import { ListeTacheComponent } from './Components/Gestion_des_Taches/liste-tache/liste-tache.component';
+import { AjoutTacheComponent } from './Components/Gestion_des_Taches/ajout-tache/ajout-tache.component';
+import { MesTachesComponent } from './Components/Gestion_des_Taches/mes-taches/mes-taches.component';
+import { CalendrierTachesComponent } from './Components/Gestion_des_Taches/calendrier-taches/calendrier-taches.component';
 
 
 
@@ -61,7 +65,10 @@ import { AjouterModuleComponent } from './Components/Gestion_des_modules/ajouter
     ProjetsChefComponent,
     ListeModuleComponent,
     AjouterModuleComponent,
-
+    ListeTacheComponent,
+    AjoutTacheComponent,
+    MesTachesComponent,
+    CalendrierTachesComponent,
 
 
   ],
@@ -80,7 +87,7 @@ import { AjouterModuleComponent } from './Components/Gestion_des_modules/ajouter
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [AjouterModuleComponent,AjouterEquipeComponent,ModifierEquipeComponent,AjouterProjetsComponent,ModifierProjetsComponent,AjouterCompetenceUserComponent, MatConfirmDialogComponent, AjoutUserComponent, ModifierUserComponent, AjouterCompetenceComponent, ModifierCompetenceComponent],
+  entryComponents: [ListeTacheComponent,AjoutTacheComponent,AjouterModuleComponent,AjouterEquipeComponent,ModifierEquipeComponent,AjouterProjetsComponent,ModifierProjetsComponent,AjouterCompetenceUserComponent, MatConfirmDialogComponent, AjoutUserComponent, ModifierUserComponent, AjouterCompetenceComponent, ModifierCompetenceComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

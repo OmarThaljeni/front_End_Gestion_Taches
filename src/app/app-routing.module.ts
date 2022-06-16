@@ -7,6 +7,8 @@ import { ListeEquipeComponent } from './Components/Gestion_des_Equipes/liste-equ
 import { ListeModuleComponent } from './Components/Gestion_des_modules/liste-module/liste-module.component';
 import { ListeProjetsComponent } from './Components/Gestion_des_projets/liste-projets/liste-projets.component';
 import { ProjetsChefComponent } from './Components/Gestion_des_projets/projets-chef/projets-chef.component';
+import { CalendrierTachesComponent } from './Components/Gestion_des_Taches/calendrier-taches/calendrier-taches.component';
+import { MesTachesComponent } from './Components/Gestion_des_Taches/mes-taches/mes-taches.component';
 import { TableUsersComponent } from './Components/Gestion_des_utilisateurs/table-users/table-users.component';
 import { LoginComponent } from './Components/login/login.component';
 import { AuthentificationGuard } from './Services/authentification.guard';
@@ -14,7 +16,7 @@ import { LogInGuard } from './Services/log-in.guard';
 
 const routes: Routes = [
 
-  { path: '', redirectTo: '/GestionProjet/login',pathMatch:'full' },
+  { path: '', redirectTo: '/GestionProjet/login',pathMatch:'full',canActivate:[LogInGuard] },
 
   {path:'GestionProjet' ,
     children:[
@@ -27,6 +29,8 @@ const routes: Routes = [
       { path: 'liste-projets', component:ListeProjetsComponent,canActivate:[AuthentificationGuard]},
       { path: 'mes-projets', component:ProjetsChefComponent,canActivate:[AuthentificationGuard]},
       { path: 'liste-modules', component:ListeModuleComponent,canActivate:[AuthentificationGuard]},
+      { path: 'mes-taches', component:MesTachesComponent,canActivate:[AuthentificationGuard]},
+      { path: 'calendrier-taches', component:CalendrierTachesComponent,canActivate:[AuthentificationGuard]},
     
   ]},
   

@@ -4,6 +4,7 @@ import { Module } from 'src/app/Models/Module';
 import { DialogService } from 'src/app/Services/dialog.service';
 import { GestionModulesService } from 'src/app/Services/module.service';
 import { NotificationService } from 'src/app/Services/notification.service';
+import { ListeTacheComponent } from '../../Gestion_des_Taches/liste-tache/liste-tache.component';
 import { AjouterModuleComponent } from '../ajouter-module/ajouter-module.component';
 
 @Component({
@@ -60,6 +61,24 @@ export class ListeModuleComponent implements OnInit {
       )
 
   }
+
+
+  ListerTaches(row) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "75%";
+    dialogConfig.height = "75%";
+    dialogConfig.data = row;
+    this.dialog.open(ListeTacheComponent, dialogConfig)
+      .afterClosed().subscribe(
+        res => {
+          this.listerListeModule();
+        }
+      )
+
+  }
+
 
 
 

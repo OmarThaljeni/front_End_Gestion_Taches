@@ -36,6 +36,18 @@
   </ng-container>
 
 
+  <ng-container matColumnDef="etatProjet">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre"> Etat module </th>
+    <td mat-cell *matCellDef="let element"> {{element.etatModule}} </td>
+  </ng-container>
+
+  
+  <ng-container matColumnDef="etatEquipe">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre"> Etat équipe </th>
+    <td mat-cell *matCellDef="let element"> {{element.etatEquipe}} </td>
+  </ng-container>
+
+
 
   <ng-container matColumnDef="user">
     <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre"> Chef du projet </th>

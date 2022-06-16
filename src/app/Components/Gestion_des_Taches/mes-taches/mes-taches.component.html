@@ -1,0 +1,88 @@
+  
+<div class="search-div">
+  <h1>Mes taches</h1>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+
+  <ng-container matColumnDef="titre">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre"> Titre </th>
+    <td mat-cell *matCellDef="let element" [ngClass]="{'make-green': element.etatTache === 'Valide', 'make-red': element.etatTache === 'En attente', 
+    'make-yellow': element.etatTache === 'En cours'}"> {{element.titre}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="dateDebut">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre"> Date début </th>
+    <td mat-cell *matCellDef="let element" [ngClass]="{'make-green': element.etatTache === 'Valide', 'make-red': element.etatTache === 'En attente', 
+    'make-yellow': element.etatTache === 'En cours'}"> {{element.dateDebut}} </td>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="dateFin">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre"> Date fin </th>
+    <td mat-cell *matCellDef="let element" [ngClass]="{'make-green': element.etatTache === 'Valide', 'make-red': element.etatTache === 'En attente', 
+    'make-yellow': element.etatTache === 'En cours'}"> {{element.dateFin}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre"> Description </th>
+    <td mat-cell *matCellDef="let element" [ngClass]="{'make-green': element.etatTache === 'Valide', 'make-red': element.etatTache === 'En attente', 
+    'make-yellow': element.etatTache === 'En cours'}"> {{element.description}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="etatTache">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre"> Etat </th>
+    <td mat-cell *matCellDef="let element" [ngClass]="{'make-green': element.etatTache === 'Valide', 'make-red': element.etatTache === 'En attente', 
+    'make-yellow': element.etatTache === 'En cours'}"> {{element.etatTache}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="priorite">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre"> Priorité </th>
+    <td mat-cell *matCellDef="let element" [ngClass]="{'make-green': element.etatTache === 'Valide', 'make-red': element.etatTache === 'En attente', 
+    'make-yellow': element.etatTache === 'En cours'}"> {{element.priorite}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="user">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre"> Membre affecté au tache </th>
+    <td mat-cell *matCellDef="let element" [ngClass]="{'make-green': element.etatTache === 'Valide', 'make-red': element.etatTache === 'En attente', 
+    'make-yellow': element.etatTache === 'En cours'}"> {{element.user?.nom}} {{element.user?.prenom}} </td>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let row">
+<!--       <button class="update" mat-icon-button (click)="terminerTache(row)">
+        <mat-icon>save</mat-icon>
+      </button>
+      <button class="matdel" mat-icon-button color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+ -->    </mat-cell>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+<br>
+<hr>
+

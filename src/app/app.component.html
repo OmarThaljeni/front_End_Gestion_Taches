@@ -44,12 +44,28 @@
       </mat-nav-list>
   
 
+
+      <mat-nav-list>
+        <a mat-list-item routerLink="/GestionProjet/mes-taches" *ngIf="this.authService.getRoles()=='ROLE_MEMBRE_EQUIPE'"> 
+          <mat-icon>work</mat-icon> Mes taches
+        </a>
+      </mat-nav-list>
+
+
       <mat-nav-list>
         <a mat-list-item routerLink="/GestionProjet/liste-modules"> 
           <mat-icon>view_module</mat-icon> Gestion des modules
         </a>
       </mat-nav-list>
 
+      <mat-nav-list>
+        <a mat-list-item routerLink="/GestionProjet/calendrier-taches"> 
+          <mat-icon>calendar_today</mat-icon> Calendrier des taches
+        </a>
+      </mat-nav-list>
+
+
+      
      
       <mat-nav-list>
         <mat-expansion-panel class="navliste">

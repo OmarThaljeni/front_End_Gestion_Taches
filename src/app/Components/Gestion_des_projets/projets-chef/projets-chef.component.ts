@@ -14,7 +14,7 @@ import { GestionProjetService } from 'src/app/Services/projet.service';
 export class ProjetsChefComponent implements OnInit {
 
   ELEMENT_DATA: Projet[];
-  displayedColumns: string[] = ['titre', 'dateDebut', 'dateFin', 'description', 'user', 'actions'];
+  displayedColumns: string[] = ['titre', 'dateDebut', 'dateFin', 'description','etatProjet','etatEquipe' ,'user', 'actions'];
   dataSource = new MatTableDataSource<Projet>();
 
 

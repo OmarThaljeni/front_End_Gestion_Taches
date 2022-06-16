@@ -6,6 +6,7 @@ export interface Projet {
     dateDebut: Date,
     dateFin: Date,
     description: string,
+    etatProjet: string,
     user:Utilisateur 
 
 

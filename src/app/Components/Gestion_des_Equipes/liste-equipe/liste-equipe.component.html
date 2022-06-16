@@ -22,7 +22,7 @@
 
   <ng-container matColumnDef="titreprojet">
     <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre"> Titre du projet </th>
-    <td mat-cell *matCellDef="let element"> {{element.projet.titre}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.projet?.titre}} </td>
   </ng-container>
 
   <ng-container matColumnDef="descprojet">

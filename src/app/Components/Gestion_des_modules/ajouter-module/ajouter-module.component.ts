@@ -25,50 +25,50 @@ export class AjouterModuleComponent implements OnInit {
   selectedProjet: any;
 
 
-  constructor(private moduleService:GestionModulesService,private gestionProjetService: GestionProjetService, private notificationService: NotificationService,
+  constructor(private moduleService: GestionModulesService, private gestionProjetService: GestionProjetService, private notificationService: NotificationService,
     private dialogService: DialogService, @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<AjouterModuleComponent>) {
-      this.autoCompleteResult = this.autoCompleteControl.valueChanges
+    this.autoCompleteResult = this.autoCompleteControl.valueChanges
       .pipe(
         startWith(''),
         map(value => this.onAutoComplete(value))
       );
-     }
+  }
 
-     onAutoComplete(value: string) {
-      let result = [];
-      if (this.tab_projet) {
-        result = this.tab_projet.filter((projet: Projet) => {
-          const { titre, description } = projet;
-          const valueToLowerCase = value && value.toLowerCase ? value.toLowerCase() : '';
-          return titre.toLowerCase().includes(valueToLowerCase) || description.toLowerCase().includes(valueToLowerCase);
-        })
-      }
-      return result;
+  onAutoComplete(value: string) {
+    let result = [];
+    if (this.tab_projet) {
+      result = this.tab_projet.filter((projet: Projet) => {
+        const { titre } = projet;
+        const valueToLowerCase = value && value.toLowerCase ? value.toLowerCase() : '';
+        return titre.toLowerCase().includes(valueToLowerCase);
+      })
     }
+    return result;
+  }
 
-    displayFn() {
-      return (projet: Projet): string => {
-        this.selectedProjet = projet;
-        return projet ?   projet.titre + ' ' + projet.description : '';
-  
-      }
-    }
+  displayFn() {
+    return (projet: Projet): string => {
+      this.selectedProjet = projet;
+      return projet ? projet.titre : '';
 
-    listerListeProjets() {
-      let resp = this.gestionProjetService.ListerTousProjets();
-      resp.subscribe(
-        response => {
-          this.tab_projet = response;
-          this.selectedProjet = response[0];
-        },
-        error => {
-          console.log(error);
-          console.log('request header: ' + error.headers.get('Authorization'));
-  
-        });
     }
-  
+  }
+
+  listerListeProjets() {
+    const id = localStorage.getItem('id');
+    let resp = this.gestionProjetService.ListeProjetEnAttenteModule(id);
+    resp.subscribe(
+      response => {
+        this.tab_projet = response;
+        this.selectedProjet = response[0];
+      },
+      error => {
+        console.log(error);
+        console.log('request header: ' + error.headers.get('Authorization'));
+      });
+  }
+
 
   ngOnInit() {
     this.onCloseOnlickEchap();
@@ -106,7 +106,7 @@ export class AjouterModuleComponent implements OnInit {
     description: new FormControl('', [Validators.required, Validators.maxLength(200)]),
     titre: new FormControl('', [Validators.required, Validators.maxLength(200)]),
     dateDebut: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-    dateFin: new FormControl('', [Validators.required, Validators.maxLength(20)]),  
+    dateFin: new FormControl('', [Validators.required, Validators.maxLength(20)]),
   });
 
 
@@ -115,28 +115,31 @@ export class AjouterModuleComponent implements OnInit {
     this.form.setValue({
       description: '',
       titre: '',
-      dateFin:'',
-      dateDebut:''
+      dateFin: '',
+      dateDebut: ''
     });
   }
 
   AjouterModule() {
     const id = this.selectedProjet.id;
-    const module = {
-      description: this.form.get('description').value,
-      titre: this.form.get('titre').value,
-      dateFin: this.form.get('dateFin').value,
-      dateDebut: this.form.get('dateDebut').value,
-      projet:this.selectedProjet
+    if (this.selectedProjet.etatEquipe === 'En attente') {
+      this.notificationService.warn('Veuillez ajouter une equipe pour ce projet avant')
     }
-    let resp = this.moduleService.AjouterModule(id,module);
-    resp.subscribe(res=>{
-        console.log("=res",res);
+    else {
+      const module = {
+        description: this.form.get('description').value,
+        titre: this.form.get('titre').value,
+        dateFin: this.form.get('dateFin').value,
+        dateDebut: this.form.get('dateDebut').value,
+        projet: this.selectedProjet
+      }
+      let resp = this.moduleService.AjouterModule(id, module);
+      resp.subscribe(res => {
         this.submitted = true
         this.DisplayAndClose();
+      })
 
-
-    })
+    }
   }
 }
 
